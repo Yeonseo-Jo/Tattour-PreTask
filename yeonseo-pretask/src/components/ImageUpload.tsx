@@ -1,18 +1,20 @@
 import "../style/ImageUpload.css";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { ReactComponent as AddImg } from "../assets/AddImg.svg";
 
 const ImageUpload = () => {
   const [firstThumbnailURL, setFirstThumbnailURL] = useState<string>("");
   const [secondThumbnailURL, setSecondThumbnailURL] = useState<string>("");
+  const [files, setFiles] = useState<FileList | null>(null);
 
   const handleChangeUploadByFileReader = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { files } = e.target;
     if (!files || !files[0]) return;
+    setFiles(files);
     const fileBlob = files[0];
 
     const reader = new FileReader();
@@ -29,6 +31,7 @@ const ImageUpload = () => {
   ) => {
     const { files } = e.target;
     if (!files || !files[0]) return;
+    setFiles(files);
     const fileBlob = files[0];
 
     if (secondThumbnailURL) URL.revokeObjectURL(secondThumbnailURL);
@@ -37,8 +40,21 @@ const ImageUpload = () => {
     setSecondThumbnailURL(url);
   };
 
-  const handleClickNext = () => {
-    console.log("성공");
+  //file 자체로 서버에 post 요청 하는 함수 연습!
+  const handleClickNext = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (files) console.log(files[0]);
+    // const formData = new FormData();
+    // if (!files) return;
+    // formData.append("file", files[0]);
+
+    // try {
+    //   const res = await axios.post("/reques 파라미터", formData, {
+    //     headers: { "content-type": "multipart/form-data" },
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -71,11 +87,6 @@ const ImageUpload = () => {
               )}
             </div>
           </label>
-          <div>
-            <button type="button" onClick={handleClickNext}>
-              다음으로
-            </button>
-          </div>
         </article>
         <article>
           <h2> createObjectURL 방식 </h2>
@@ -102,13 +113,13 @@ const ImageUpload = () => {
               )}
             </div>
           </label>
-          <div>
-            <button type="button" onClick={handleClickNext}>
-              다음으로
-            </button>
-          </div>
         </article>
       </section>
+      <div className="next-button">
+        <button type="submit" onClick={handleClickNext}>
+          다음으로
+        </button>
+      </div>
     </>
   );
 };

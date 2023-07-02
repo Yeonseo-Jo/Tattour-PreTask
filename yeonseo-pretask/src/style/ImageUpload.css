@@ -29,3 +29,9 @@
   /*이미지 비율 어떻게 될것인지 설정*/
   object-fit: fill;
 }
+
+.next-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+}
