@@ -26,6 +26,11 @@ const ImageUpload = () => {
     };
   };
 
+  const handleDeleteFistImg = () => {
+    setFirstThumbnailURL("");
+    setFiles(null);
+  };
+
   const handleChangeUploadByObjectURL = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -34,10 +39,17 @@ const ImageUpload = () => {
     setFiles(files);
     const fileBlob = files[0];
 
+    //메모리에 url이 존재한다면 해제 해줘야 함
     if (secondThumbnailURL) URL.revokeObjectURL(secondThumbnailURL);
     const url = URL.createObjectURL(fileBlob);
     console.log("createObject 방식: \n", url);
     setSecondThumbnailURL(url);
+  };
+
+  const handleDeleteSecondImg = () => {
+    URL.revokeObjectURL(secondThumbnailURL);
+    setSecondThumbnailURL("");
+    setFiles(null);
   };
 
   //file 자체로 서버에 post 요청 하는 함수 연습!
@@ -64,55 +76,67 @@ const ImageUpload = () => {
       <section className="section-img">
         <article>
           <h2>FileReader 방식</h2>
-          <label className="img__label" htmlFor="first__designImg">
-            <input
-              id="first__designImg"
-              className="img__input"
-              type="file"
-              accept="image/*"
-              onChange={handleChangeUploadByFileReader}
-            />
-            <div className="img__uploadBox">
-              {firstThumbnailURL ? (
+
+          {firstThumbnailURL ? (
+            <>
+              <div className="img__uploadBox">
                 <img
                   className="img__uploadBox-preview"
                   src={firstThumbnailURL}
                   alt="미리보기 이미지"
                 />
-              ) : (
-                <>
-                  <AddImg />
-                  <span>도안 이미지를 첨부해주세요</span>
-                </>
-              )}
-            </div>
-          </label>
+              </div>
+              <button type="button" onClick={handleDeleteFistImg}>
+                삭제
+              </button>
+            </>
+          ) : (
+            <label className="img__label" htmlFor="first__designImg">
+              <input
+                id="first__designImg"
+                className="img__input"
+                type="file"
+                accept="image/*"
+                onChange={handleChangeUploadByFileReader}
+              />
+              <div className="img__uploadBox">
+                <AddImg />
+                <span>도안 이미지를 첨부해주세요</span>
+              </div>
+            </label>
+          )}
         </article>
         <article>
           <h2> createObjectURL 방식 </h2>
-          <label className="img__label" htmlFor="second__designImg">
-            <input
-              id="second__designImg"
-              className="img__input"
-              type="file"
-              accept="image/*"
-              onChange={handleChangeUploadByObjectURL}
-            />
-            <div className="img__uploadBox">
-              {secondThumbnailURL ? (
+
+          {secondThumbnailURL ? (
+            <>
+              <div className="img__uploadBox">
                 <img
                   className="img__uploadBox-preview"
                   src={secondThumbnailURL}
                   alt="미리보기 이미지"
                 />
-              ) : (
-                <>
-                  <AddImg />
-                  <span>도안 이미지를 첨부해주세요</span>
-                </>
-              )}
-            </div>
-          </label>
+              </div>
+              <button type="button" onClick={handleDeleteSecondImg}>
+                삭제
+              </button>
+            </>
+          ) : (
+            <label className="img__label" htmlFor="second__designImg">
+              <input
+                id="second__designImg"
+                className="img__input"
+                type="file"
+                accept="image/*"
+                onChange={handleChangeUploadByObjectURL}
+              />
+              <div className="img__uploadBox">
+                <AddImg />
+                <span>도안 이미지를 첨부해주세요</span>
+              </div>
+            </label>
+          )}
         </article>
       </section>
       <div className="next-button">
