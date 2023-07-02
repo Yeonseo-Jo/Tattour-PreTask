@@ -1,11 +1,11 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "../style/firstCarousel.css";
+import "../../style/firstCarousel.css";
 
 import Slider from "react-slick";
 
-import nextArrowIcon from "../assets/nextArrowIcon.svg";
-import prevArrowIcon from "../assets/prevArrowIcon.svg";
+import nextArrowIcon from "../../assets/nextArrowIcon.svg";
+import prevArrowIcon from "../../assets/prevArrowIcon.svg";
 
 interface arrowProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
