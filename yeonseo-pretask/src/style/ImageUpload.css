@@ -1,0 +1,17 @@
+.img__input {
+  display: none;
+}
+
+.img__preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 20rem;
+  width: 20rem;
+  gap: 1rem;
+
+  background-color: lightgray;
+  border-radius: 1rem;
+}

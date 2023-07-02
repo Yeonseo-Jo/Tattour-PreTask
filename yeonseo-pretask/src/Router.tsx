@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./components/Home";
-import Image from "./components/Image";
 import ImageUpload from "./components/ImageUpload";
 
 const Router = () => {
