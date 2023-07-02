@@ -34,6 +34,11 @@
 }
 
 /*paginations bullet dots custon*/
+.slick-dots {
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+
 /*활성화 된 dots*/
 .slick-dots li.slick-active button:before {
   color: crimson;
