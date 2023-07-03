@@ -1,0 +1,52 @@
+/*전체 영역 css*/
+.slick-slider {
+  display: flex;
+  justify-content: center;
+}
+
+/*안에 들어가는 박스 css*/
+.slick-list {
+  height: 10rem;
+  width: 20rem;
+
+  background-color: pink;
+}
+
+/*버튼 커스텀 css*/
+.slick-BtnWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.slick-prevBtn,
+.slick-nextBtn {
+  margin: auto 0;
+  border: none;
+  background-color: transparent;
+}
+
+.slick-prevBtn {
+  padding-right: 2rem;
+}
+
+.slick-nextBtn {
+  padding-left: 2rem;
+}
+
+/*paginations bullet dots custon*/
+.slick-dots {
+  margin-bottom: 2rem;
+  z-index: 2;
+}
+
+/*활성화 된 dots*/
+.slick-dots li.slick-active button:before {
+  color: crimson;
+  /*참고 : dot 크기를 키우려면 font-size로*/
+  font-size: 12px;
+}
+
+/*비활성화 된 dots*/
+.slick-dots li button:before {
+  color: palevioletred;
+}
